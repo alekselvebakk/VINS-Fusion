@@ -53,12 +53,12 @@ Clone the repository and catkin_make:
 ```
 (if you fail in this step, try to find another computer with clean system or reinstall Ubuntu and ROS)
 
-## 3. Milliampere Example
+## 3. Milliampere2 Example
 
 ### 3.1 Monocular + IMU
 ```
 roslaunch vins vins_rviz.launch
-rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/milliAmpere/mA_mono_imu_config.yaml
+rosrun vins vins_node /root/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_config.yaml
 (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/milliAmpere/mA_mono_imu_config.yaml
 #play dataset
 ```
