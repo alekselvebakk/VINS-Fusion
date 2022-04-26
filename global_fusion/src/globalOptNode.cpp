@@ -23,6 +23,7 @@
 #include <fstream>
 #include <queue>
 #include <mutex>
+#include <senti_com/SentiGNSSNavPvt.h>
 
 GlobalOptimization globalEstimator;
 ros::Publisher pub_global_odometry, pub_global_path, pub_car;
@@ -70,9 +71,30 @@ void publish_car_model(double t, Eigen::Vector3d t_w_car, Eigen::Quaterniond q_w
     pub_car.publish(markerArray_msg);
 }
 
-void GPS_callback(const sensor_msgs::NavSatFixConstPtr &GPS_msg)
+sensor_msgs::NavSatFixPtr SentiGPS2NavSatFix(const senti_com::SentiGNSSNavPvtConstPtr &SentiGPS_msg){
+    sensor_msgs::NavSatFixPtr GPS_msg( new sensor_msgs::NavSatFix() );
+
+    GPS_msg->header = SentiGPS_msg->header;
+
+    GPS_msg->altitude = SentiGPS_msg->hei;
+    GPS_msg->latitude = SentiGPS_msg->lat;
+    GPS_msg->longitude = SentiGPS_msg->lon;
+    GPS_msg->position_covariance_type=0; //COVARIANCE_TYPE_UNKNOWN 
+
+    sensor_msgs::NavSatStatusPtr navStatus(new sensor_msgs::NavSatStatus() );
+    navStatus->status=2; //with ground-based augmentation
+    navStatus->service=1; // SERVICE_GPS 
+    GPS_msg->status = *navStatus;
+
+    return GPS_msg;
+}
+
+
+
+void GPS_callback(const senti_com::SentiGNSSNavPvtConstPtr &SentiGPS_msg)
 {
     //printf("gps_callback! \n");
+    sensor_msgs::NavSatFixPtr GPS_msg = SentiGPS2NavSatFix(SentiGPS_msg);
     m_buf.lock();
     gpsQueue.push(GPS_msg);
     m_buf.unlock();
@@ -165,7 +187,7 @@ int main(int argc, char **argv)
 
     global_path = &globalEstimator.global_path;
 
-    ros::Subscriber sub_GPS = n.subscribe("/gps", 100, GPS_callback);
+    ros::Subscriber sub_GPS = n.subscribe("/navigation/SentiGNSSNavPvt", 100, GPS_callback);
     ros::Subscriber sub_vio = n.subscribe("/vins_estimator/odometry", 100, vio_callback);
     pub_global_path = n.advertise<nav_msgs::Path>("global_path", 100);
     pub_global_odometry = n.advertise<nav_msgs::Odometry>("global_odometry", 100);
