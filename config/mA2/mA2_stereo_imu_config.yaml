@@ -8,7 +8,7 @@ num_of_cam: 2
 imu_topic: "/senti_sensor_msg_IMU"
 image0_topic: "/camera_array/fp_f/image_raw"
 image1_topic: "/camera_array/fs_f/image_raw"
-output_path: "~/output/"
+output_path: "/root/vinsfusion_ws/output/posegraph"
 
 cam0_calib: "cam_fp_f_pinhole.yaml"
 cam1_calib: "cam_fs_f_pinhole.yaml"
@@ -67,5 +67,5 @@ td: 0.00513669522949                # initial value of time offset. unit: s. rea
 
 #loop closure parameters
 load_previous_pose_graph: 0        # load and reuse previous pose graph; load from 'pose_graph_save_path'
-pose_graph_save_path: "~/output/pose_graph/" # save and load path
+pose_graph_save_path: "/root/vinsfusion_ws/output/pose_graph/" # save and load path
 save_image: 1                   # save image in pose graph for visualization prupose; you can close this function by setting 0
