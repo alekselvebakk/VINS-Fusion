@@ -6,12 +6,10 @@ imu: 1
 num_of_cam: 1  
 
 imu_topic: "/senti_sensor_msg_IMU"
-image0_topic: "/camera_array/fp_f/image_raw"
-image1_topic: "/camera_array/fs_f/image_raw"
+image0_topic: "/camera_array/fs_f/image_raw"
 output_path: "~/output/"
 
-cam0_calib: "cam_fp_f_pinhole.yaml"
-cam1_calib: "cam_fs_f_pinhole.yaml"
+cam0_calib: "cam_fs_f_pinhole.yaml"
 image_width: 1224
 image_height: 1024
    
@@ -24,10 +22,21 @@ body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [0.02276124, -0.02095116,  0.99952137,  4.59945697,
-          0.99973152, -0.00386001, -0.02284693, -1.59556616,
-          0.00433684,  0.99977305,  0.02085768, -1.12841402,
-          0.,          0.,          0.,          1.]
+# From vins-fusion   
+#   data: [0.03503475, -0.01559081,  0.99926448,  4.57137389319,
+#          0.99938084,  0.00378856, -0.03497972,  0.669574919504,
+#          -0.00324041,  0.99987128,  0.01571388, -1.0800027235,
+#          0.,          0.,          0.,          1.]
+# From calculation         
+#   data: [0.020546,   -0.0290658,   0.99936632,  4.60052947,
+#          0.99968778, -0.01361963, -0.02094873,  0.59373312,
+#          0.01421989,  0.99948471,  0.0287769,  -1.10329173,
+#          0.,          0.,          0.,          1.]
+# From calibration
+   data: [0.0267076523, -0.0122573183,  0.999568136, 4.61255550,
+         0.999641691, -0.00145911134, -0.0267275101, 0.680022881,
+         0.0017860888,  0.999923812,  0.0122139570,-1.09317797,
+         0.,  0.,  0., 1.]
 
 #Multiple thread support
 multiple_thread: 1
@@ -35,7 +44,7 @@ multiple_thread: 1
 #feature traker paprameters
 max_cnt: 150            # max feature number in feature tracking
 min_dist: 30            # min distance between two features 
-freq: 10                # frequence (Hz) of publish tracking result. At least 10Hz for good estimation. If set 0, the frequence will be same as raw image 
+freq: 0                # frequence (Hz) of publish tracking result. At least 10Hz for good estimation. If set 0, the frequence will be same as raw image 
 F_threshold: 1.0        # ransac threshold (pixel)
 show_track: 1           # publish tracking image as topic
 flow_back: 1            # perform forward and backward optical flow to improve feature tracking accuracy
