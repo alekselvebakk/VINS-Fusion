@@ -80,6 +80,13 @@ rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_stereo_conf
 #play dataset
 ```
 
+### 3.4 GPS+Odometry
+
+After running the given odometry node
+```
+rosrun global_fusion global_fusion_node
+```
+
 
 ## 4. EuRoC Example
 Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) to YOUR_DATASET_FOLDER. Take MH_01 for example, you can run VINS-Fusion with three sensor types (monocular camera + IMU, stereo cameras + IMU and stereo cameras). 
