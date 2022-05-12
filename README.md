@@ -62,14 +62,14 @@ rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_fp
 (optional) rosrun loop_fusion loop_fusion_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_config.yaml
 #play dataset
 ```
-### 3.1 Monocular left camera + IMU
+### 3.2 Monocular left camera + IMU
 ```
 roslaunch vins vins_rviz.launch
 rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_fsf.yaml
 (optional) rosrun loop_fusion loop_fusion_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_config.yaml
 #play dataset
 ```
-### 4.2 Stereo cameras + IMU
+### 3.3 Stereo cameras + IMU
 
 ```
 roslaunch vins vins_rviz.launch
@@ -78,7 +78,7 @@ rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_stereo_imu_
 #play data
 ```
 
-### 3.3 Stereo cameras
+### 3.4 Stereo cameras
 
 ```
 roslaunch vins vins_rviz.launch
@@ -87,7 +87,7 @@ rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_stereo_conf
 #play dataset
 ```
 
-### 3.4 GPS+Odometry
+### 3.5 GPS+Odometry
 
 After running the given odometry node
 ```
