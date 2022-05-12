@@ -59,14 +59,14 @@ Clone the repository and catkin_make:
 ```
 roslaunch vins vins_rviz.launch
 rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_fpf.yaml
-(optional) rosrun loop_fusion loop_fusion_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_config.yaml
+(optional) rosrun loop_fusion loop_fusion_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_fpf.yaml
 #play dataset
 ```
 ### 3.2 Monocular left camera + IMU
 ```
 roslaunch vins vins_rviz.launch
 rosrun vins vins_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_fsf.yaml
-(optional) rosrun loop_fusion loop_fusion_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_config.yaml
+(optional) rosrun loop_fusion loop_fusion_node ~/vinsfusion_ws/src/VINS-Fusion/config/mA2/mA2_mono_imu_fsf.yaml
 #play dataset
 ```
 ### 3.3 Stereo cameras + IMU
